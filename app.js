@@ -27,11 +27,13 @@ const myConnection=require('express-myconnection');
 //})
 
 const flash=require('connect-flash');
-
+const session=require('express-session');
+//motor de vistas//
 app.set('view engine','ejs');
 app.set('views',__dirname+"/views");
+//archivos estaticos//
 app.use(express.static(__dirname+"/public"));
-
+//connecion a mysql//
 app.use(myConnection(mysql,{
     host:'localhost',
     user:'root',
@@ -42,6 +44,22 @@ app.use(myConnection(mysql,{
 
 app.use(express.urlencoded({extended:false}));
 
+app.use(session({
+    secret:'secret',
+    cookie:{maxAge:60000},
+    resave:false,
+    saveUninitialized:false
+}));
+
+app.use(flash());
+
+//app.use((req,res,next)=>{
+  //  app.locals.success=req.flash('success');
+   // app.locals.success=req.flash('message');
+   // next();
+//});
+
+//definicion de rutas//
 app.use('/',require('./router/rutasWeb'));
 
 app.use((req,res,next)=>{
@@ -51,13 +69,6 @@ app.use((req,res,next)=>{
     });
 })
 
-app.use(flash());
-
-app.use((req,res,next)=>{
-    app.locals.success=req.flash('success');
-    app.locals.success=req.flash('message');
-    next();
-});
 
 app.listen(puerto,()=>{
     console.log('Servidor listo: '+puerto);

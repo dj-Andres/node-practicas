@@ -4,9 +4,19 @@ const router=express.Router();
 
 const paciente=require('../models/paciente');
 
+const doctor=require('../models/especialista');
+
 router.get('/',(req,res)=>{
     res.render("index");
 });
+
+router.get('/',(req,res)=>{
+    res.render("servicios");
+});
+
+router.get('/especialista',(req,res)=>{
+    res.render("doctor");
+})
 //router.get('/',paciente.listar);
 
 //router.get('/paciente',(req,res)=>{
@@ -18,6 +28,8 @@ router.post('/paciente/add',paciente.insert);
 router.get('/paciente/eliminar/:id',paciente.eliminar);
 router.get('/paciente/update/:id',paciente.update);
 router.post('/paciente/editar/:id',paciente.editar);
+
+router.get('/especialista',doctor.listar);
 
 
 module.exports=router;

@@ -79,7 +79,6 @@
             }
         });
     </script>
-    
     <% if (data==true) { %>
         <script>
                 const botton=document.getElementById('boton');
@@ -89,7 +88,6 @@
                         text: 'El cedula ya existe , Por favor ingresar una cedula no existente',
                         icon: 'error'
                     })
-                    window.location.href = '/paciente';
                 });
         </script>
         <% } else { %>
@@ -101,7 +99,6 @@
                         text: 'Se guardo de manera correcta el paciente',
                         icon: 'success'
                     })
-                    window.location.href = '/paciente';
                 }); 
             </script>
         <% } %> 

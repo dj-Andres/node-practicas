@@ -7,9 +7,11 @@ paciente.listar=(req,res)=>{
             if(err){
                 res.json(err);
             }
-            res.render("servicios",{
-                data:rows     
-            });
+            res.render("servicios",
+                {
+                    data:rows
+                }
+            );
         });
     });
 }
@@ -19,6 +21,8 @@ paciente.insert=async(req,res)=>{
           conn.query("SELECT * FROM paciente WHERE cedula= ?",[data.cedula],(err,rows,fields)=>{
             if(!err){
                 if(rows.length > 0){
+                        //req.flash('message','La cedula ya se encuentra asociado a un paciente ! Verificar el numero de Identificacion');
+                        //res.render("servicios");
                         res.render("servicios",{
                             data:true
                         });
@@ -33,6 +37,8 @@ paciente.insert=async(req,res)=>{
                         res.render("servicios",{
                             data:false
                         });
+                        //req.flash('message','Se guardo de manera exitosa el paciente');
+                        //res.render("servicios");
                     })      
                 }
             }else{
