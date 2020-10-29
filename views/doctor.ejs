@@ -1,21 +1,68 @@
 <%-include('template/header') %>
+
 <body>
     <%-include('template/menu') %>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Buscar Paciente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="GET">
+                        <input type="text" name="buscar" class="form-control">
+                    </form>
+                    <div class="table-responsive p-1">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Codigo</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Agendacion</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>jajaj</th>
+                                    <td>jajajja</td>
+                                    <td>jajajaj</td>
+                                    <td>
+                                        <a href="" class="btn btn-secondary mb-1">Actualizar</a>
+                                        <a href="" class="btn btn-danger mb-1">Eliminar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <section>
             <div class="container-fluid">
                 <div class="card card-success">
                     <div class="card-header">
-                        <h3 class="card-title">Buscar Pacientes</h3>
+                        <h3 class="card-title">Buscar Agendados</h3>
                         <div class="input-group">
-                            <input type="text" class="form-control fload-left" id="buscar-paciente" placeholder="Ingrese la cedula del paciente">
+                            <input type="text" class="form-control" id="buscar-paciente"
+                                placeholder="Ingrese la cedula del paciente" name="buscar">
                             <div class="input-group-append">
                                 <button class="btn btn-default"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id ="pacientes" class="row d-flex align-items-stretch">  
+                        <div id="pacientes" class="row d-flex align-items-stretch">
                             <div class="container">
                                 <div class="row mt-5">
                                     <div class="col-md-6">
@@ -31,17 +78,17 @@
                                                 </thead>
                                                 <tbody>
                                                     <% if(datos) { %>
-                                                        <% for(var i=0; i < datos.length; i++){ %>
-                                                        <tr>
-                                                            <th><%= datos[i].Id_odontologo %></th>
-                                                            <td><%= datos[i].nombre %></td>
-                                                            <td><%= datos[i].agendacion %></td>
-                                                            <td>
-                                                                <a href="" class="btn btn-secondary mb-1">Actualizar</a>
-                                                                <a href="" class="btn btn-danger mb-1">Eliminar</a>
-                                                            </td>
-                                                        </tr>
-                                                        <% } %>
+                                                    <% for(var i=0; i < datos.length; i++){ %>
+                                                    <tr>
+                                                        <th><%= datos[i].Id_odontologo %></th>
+                                                        <td><%= datos[i].nombre %></td>
+                                                        <td><%= datos[i].agendacion %></td>
+                                                        <td>
+                                                            <a href="" class="btn btn-secondary mb-1">Actualizar</a>
+                                                            <a href="" class="btn btn-danger mb-1">Eliminar</a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
                                                     <% } %>
                                                 </tbody>
                                             </table>
@@ -53,33 +100,54 @@
                                                 <h5 class="card-title"></h5>
                                                 <form action="" method="POST">
                                                     <div class="form-group">
-                                                        <label for="Cedula">Cedula</label>
-                                                        <input type="text" class="form-control" name="cedula" id="cedula">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="nombre">Nombre</label>
+                                                        <label for="Cedula">Nombre</label>
                                                         <input type="text" class="form-control" name="nombre">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="apellido">Apellido</label>
-                                                        <input type="text" class="form-control" name="apellido">
+                                                        <label for="nombre">Agendación</label>
+                                                        <input type="text" class="form-control" name="agendacion">
                                                     </div>
-                                                    <button type="submit" class="btn btn-success btn-lg btn-block" id="boton">Agregar</button>
+                                                    <div class="form-group">
+                                                        <label for="nombre">Paciente</label>
+                                                        <button class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#exampleModal" id="modal">Paciente</button>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success btn-lg btn-block"
+                                                        id="boton">Agregar</button>
                                                 </form>
                                             </div>
-                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-    
+
                     </div>
                 </div>
             </div>
         </section>
     </div>
     <%-include('template/footer') %>
+    <script>
+        const buscar = (valor) => {
+            console.log(valor);
+        }
+        const busqueda = document.getElementById('buscar-paciente');
+        busqueda.addEventListener('keyup', () => {
+            let valor = busqueda.value;
+            if (valor != '') {
+                buscar(valor);
+            } else {
+                buscar();
+            }
+        });
+        const modal = document.getElementById('modal');
+        modal.addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+    </script>
 </body>
+
 </html>

@@ -28,6 +28,7 @@ router.get('/paciente/update/:id',paciente.update);
 router.post('/paciente/editar/:id',paciente.editar);
 
 router.get('/especialista',doctor.listar);
+router.get('/especialista',doctor.buscar);
 
 
 module.exports=router;
