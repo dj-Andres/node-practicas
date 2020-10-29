@@ -1,16 +1,16 @@
 const doctor={};
-
-doctor.listar=(req,res)=>{
+doctor.listar=async(req,res)=>{
     req.getConnection((err,conn)=>{
-        conn.query('SELECT * FROM paciente',(err,rows)=>{
+        await = conn.query('SELECT * FROM odontologo',(err,rows)=>{
             if(err){
                 res.json(err);
             }
-            res.render("servicios",
+            res.render("doctor",
                 {
-                    data:rows
+                    datos:rows
                 }
             );
+            console.log(rows);
         });
     });
 }

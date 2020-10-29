@@ -12,6 +12,7 @@ paciente.listar=(req,res)=>{
                     data:rows
                 }
             );
+            console.log(rows);
         });
     });
 }

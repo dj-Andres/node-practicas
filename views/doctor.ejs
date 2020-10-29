@@ -1,7 +1,85 @@
 <%-include('template/header') %>
 <body>
     <%-include('template/menu') %>
-    <h1>Nueva Seccions</h1>
+    <div class="container">
+        <section>
+            <div class="container-fluid">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Buscar Pacientes</h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control fload-left" id="buscar-paciente" placeholder="Ingrese la cedula del paciente">
+                            <div class="input-group-append">
+                                <button class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id ="pacientes" class="row d-flex align-items-stretch">  
+                            <div class="container">
+                                <div class="row mt-5">
+                                    <div class="col-md-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th scope="col">Codigo</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Agendacion</th>
+                                                        <th scope="col">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if(datos) { %>
+                                                        <% for(var i=0; i < datos.length; i++){ %>
+                                                        <tr>
+                                                            <th><%= datos[i].Id_odontologo %></th>
+                                                            <td><%= datos[i].nombre %></td>
+                                                            <td><%= datos[i].agendacion %></td>
+                                                            <td>
+                                                                <a href="" class="btn btn-secondary mb-1">Actualizar</a>
+                                                                <a href="" class="btn btn-danger mb-1">Eliminar</a>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>
+                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"></h5>
+                                                <form action="" method="POST">
+                                                    <div class="form-group">
+                                                        <label for="Cedula">Cedula</label>
+                                                        <input type="text" class="form-control" name="cedula" id="cedula">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nombre">Nombre</label>
+                                                        <input type="text" class="form-control" name="nombre">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="apellido">Apellido</label>
+                                                        <input type="text" class="form-control" name="apellido">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success btn-lg btn-block" id="boton">Agregar</button>
+                                                </form>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+    
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
     <%-include('template/footer') %>
 </body>
 </html>
