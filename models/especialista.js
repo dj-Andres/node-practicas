@@ -13,6 +13,21 @@ doctor.listar=async(req,res)=>{
         });
     });
 }
+doctor.list_paciente=async(req,res)=>{
+    req.getConnection((err,conn)=>{
+        await = conn.query("SELECT * FROM paciente",(err,filas)=>{
+            if(!err){
+                res.render('doctor',
+                    {
+                        dato:filas
+                    }
+                );
+            }else{
+                res.json(err);
+            }
+        });
+    });
+}
 doctor.buscar=async(req,res)=>{
     //const cedula=req.query.paciente;
     if(req.body.buscar){

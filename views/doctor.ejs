@@ -14,28 +14,30 @@
                 </div>
                 <div class="modal-body">
                     <form action="" method="GET">
-                        <input type="text" name="buscar" class="form-control">
+                        <input type="text" name="buscar" class="form-control" id="paciente">
                     </form>
                     <div class="table-responsive p-1">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Codigo</th>
+                                    <th scope="col">Cedula</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Agendacion</th>
-                                    <th scope="col">Acciones</th>
+                                    <th scope="col">Apellido</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>jajaj</th>
-                                    <td>jajajja</td>
-                                    <td>jajajaj</td>
-                                    <td>
-                                        <a href="" class="btn btn-secondary mb-1">Actualizar</a>
-                                        <a href="" class="btn btn-danger mb-1">Eliminar</a>
-                                    </td>
-                                </tr>
+
+                                <% if (dato) { %>
+                                    <% for( let i = 0; i < datos.length; i++) { %>
+                                        <tr>
+                                            <th><%- dato[i].Id_paciente %></th>
+                                            <td><%- dato[i].cedula %></td>
+                                            <td><%- dato[i].nombre %></td>
+                                            <td><%- dato[i].apellido %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
                             </tbody>
                         </table>
                     </div>
